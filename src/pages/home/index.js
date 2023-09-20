@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Container, Movie, MovieList, Btn, Header, GlobalStyle, Nav } from "./style";
+import { Container, Movie, MovieList, Btn, Header, GlobalStyle, Nav, CustomCarousel } from "./style";
 import { Link } from "react-router-dom";
+
 
 function Home() {
     const imagePath = "https://image.tmdb.org/t/p/w500";
@@ -14,6 +15,15 @@ function Home() {
                 setMovies(data.results);
             });
     }, [KEY]);
+    const metade = Math.ceil(movies.length / 2);
+    const primeiraMetade = movies.slice(0, metade);
+    const segundaMetade = movies.slice(metade);
+
+    const carouselSettings = {
+        infinite: true,
+        slidesToShow: 4, 
+        slidesToScroll: 1,
+    };
 
     return (
     <>
@@ -52,23 +62,35 @@ function Home() {
                     <img src=""></img>
                 </div>
                 <h1>Em Alta</h1>
-            <MovieList>
-                {movies.map((movie) => {
-                    return (
+                <CustomCarousel {...carouselSettings}>
+                    {primeiraMetade.map((movie) => (
                         <Movie key={movie.id}>
                             <img
                                 src={`${imagePath}${movie.poster_path}`}
                                 alt="{movie.title}"
                             />
                             <span>{movie.title}</span>
-
                             <Link to={`/${movie.id}`}>
                                 <Btn>Detalhes</Btn>
                             </Link>
                         </Movie>
-                    );
-                })}
-            </MovieList>
+                    ))}
+                </CustomCarousel>
+                <h1>Novidades</h1> 
+                <CustomCarousel {...carouselSettings}>
+                    {segundaMetade.map((movie) => (
+                        <Movie key={movie.id}>
+                            <img
+                                src={`${imagePath}${movie.poster_path}`}
+                                alt="{movie.title}"
+                            />
+                            <span>{movie.title}</span>
+                            <Link to={`/${movie.id}`}>
+                                <Btn>Detalhes</Btn>
+                            </Link>
+                        </Movie>
+                    ))}
+                </CustomCarousel>
         </Container>
     </>
     );

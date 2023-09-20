@@ -1,11 +1,20 @@
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 export const GlobalStyle = createGlobalStyle`
     body{
         margin: 0;
         padding:0;
         background-color: #0D1326;
     }
+`;
+
+
+export const CustomCarousel = styled(Slider)`
+  width: 95%;
+  margin: 0 auto;
 `;
 
 export const Header = styled.header`
@@ -136,14 +145,18 @@ export const MovieList = styled.ul`
 `;
 
 export const Movie = styled.li`
+    width: 15vw !important;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    margin-left: 5vw;
+    margin-right: -2vw;
     justify-content: space-evenly;
     img {
-        width: 180px;
+        width: 100%;
         border-radius: 0.3rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     span {
         font-weight: bold;
