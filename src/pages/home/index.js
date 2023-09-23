@@ -29,6 +29,9 @@ function Home() {
     <>
         <GlobalStyle/>
         <Container>
+            <div className="background-image">
+                <img src="https://i.ibb.co/5cL7Nkg/white-canvas-texture-high-quality-texture-macro-463999-716.png"></img>
+            </div>
             <Header>
                 <Nav>
                     <ul>
@@ -58,10 +61,12 @@ function Home() {
                     </Link>
                 </div>
             </Header>
+            <div id="aaa">
                 <div id="emAltaImg">
-                    <img src=""></img>
+                    <img src="https://i.ibb.co/WpNFhRt/mercado-em-alta.png"></img>
                 </div>
                 <h1>Em Alta</h1>
+            </div>
                 <CustomCarousel {...carouselSettings}>
                     {primeiraMetade.map((movie) => (
                         <Movie key={movie.id}>

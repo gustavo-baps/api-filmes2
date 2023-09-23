@@ -7,7 +7,25 @@ export const GlobalStyle = createGlobalStyle`
     body{
         margin: 0;
         padding:0;
-        background-color: #0D1326;
+        background-color: #060912;
+    }
+    #aaa {
+        display: flex;
+        margin-left: 37vw;
+        z-index: 5;
+    }
+    #aaa img{
+        width: 50%;
+        margin-top: 3.5vw;
+    }
+    .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.1; 
     }
 `;
 
@@ -15,9 +33,12 @@ export const GlobalStyle = createGlobalStyle`
 export const CustomCarousel = styled(Slider)`
   width: 95%;
   margin: 0 auto;
+  margin-bottom: 4vw;
+  z-index: 5;
 `;
 
 export const Header = styled.header`
+    z-index: 5;
     background-image: url("https://i.ibb.co/BKf0CJz/output-onlinepngtools-2.png");
     box-shadow: 0 5px 12px rgba(0,0,0,.55);
     background-size: cover;
@@ -36,6 +57,7 @@ export const Header = styled.header`
         font-size: 1.1vw;
         opacity: 60%;
         line-height: 1.5vw;
+        z-index: 5;
     }
     #h1Legal {
         margin-top: -3vw;  
@@ -59,6 +81,7 @@ export const Header = styled.header`
         margin-left: 3vw;
         display: flex;
         margin-top: 1vw;
+        z-index: 5;
     }
     #botao1 {
         padding: 0.5rem;
@@ -67,6 +90,7 @@ export const Header = styled.header`
         height: 2.5vw;
         background-color: #FFC72C;
         box-shadow: 0 5px 12px rgba(0,0,0,.55);
+        z-index: 5;
     }
     #botao1 a {
         color: black;
@@ -82,6 +106,7 @@ export const Header = styled.header`
         background-color: white;
         margin-left: 1vw;
         box-shadow: 0 5px 12px rgba(0,0,0,.55);
+        z-index: 5;
     }
     #botao2 a {
         color: black;
@@ -96,33 +121,8 @@ export const Header = styled.header`
 
 export const Nav = styled.nav`
     flex-direction: column;
-    height: 8vw;
-    div {
-        margin-top: 2vw;
-        height: 0.007vw;
-        background-color: #fff;
-        width: 100%;
-    }
-    ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        padding: 0;
-        margin: 0;
-    }
-    li {
-        font-size: 18px;
-        margin-left: 10vw;
-    }
-    #logo{
-        width: 12vw;
-        margin-left: -5vw;
-        margin-right: 35vw;
-        margin-top: -1.9vw;
-    }
-    #logo img{
-        width: 100%;
-    }
+    height: 5vw;
+    z-index: 5;
 `;
 
 export const Container = styled.div`
@@ -145,18 +145,24 @@ export const MovieList = styled.ul`
 `;
 
 export const Movie = styled.li`
-    width: 15vw !important;
+    background-color: #1F283D;
+    width: 16vw !important;
+    border-radius: 0.3vw;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     margin-left: 5vw;
     margin-right: -2vw;
+    margin-bottom: 1vw;
     justify-content: space-evenly;
+    box-shadow: 0 5px 5px rgba(0,0,0,.55);
     img {
         width: 100%;
         border-radius: 0.3rem;
         margin-bottom: 1rem;
+        box-shadow: 0 5px 5px rgba(0,0,0,.55);
     }
     span {
         font-weight: bold;
@@ -172,14 +178,15 @@ export const Movie = styled.li`
 `;
 
 export const Btn = styled.button`
-    margin-top: 5px;
-    padding: 0.7rem 3rem;
-    border: none;
-    border-radius: 5px;
-    color: #212121;
-    background-color: #ffffff;
-    font-weight: 1000;
-    font-size: 12 px;
+    padding: 0.5rem;
+    border-radius: 180px;
+    width: 12vw;
+    height: 2.5vw;
+    background-color: #FFC72C;
+    margin-top: 1vw;
+    box-shadow: 0 5px 12px rgba(0,0,0,.55);
     cursor: pointer;
-    transition: all 250ms;
+    font-weight: 700;
 `;
+
+

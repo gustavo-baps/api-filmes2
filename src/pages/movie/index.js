@@ -26,24 +26,41 @@ const Movie = () => {
 
     return (
         <div>
-            <nav>
-                <h1>Movie</h1>
-            </nav>
-            <img
-                className="img_movie"
+            <div className="background-image">
+                <img
                 src={`${imagePath}${movie.poster_path}`}
-                alt="{movie.title}"
-            />
-            <div className="container">
-                <h1>{movie.title}</h1>
-                <h3>Data de lançamento: {movie.release_date}</h3>
-                <div className="descricao">
-                    <h4>Descrição: </h4>
-                    <p className="movie-desc">{movie.overview}</p>
+                alt={movie.title}
+                className="img_movie"
+                />
+            </div>
+            <nav>
+                <ul>
+                    <div id="logo">
+                        <img src="https://i.ibb.co/G7dmjpf/imagem-2023-09-20-155122815-removebg-preview.png"></img>
+                    </div>
+                        <li>Home</li>
+                        <li>Filmes</li>
+                        <li>Sobre</li>
+                </ul>
+                <div></div>
+            </nav>
+            <div class="filmeDetalhes">
+                <div id="imgMovieDiv">
+                    <img
+                        className="img_movie"
+                        src={`${imagePath}${movie.poster_path}`}
+                        alt="{movie.title}"
+                    />
                 </div>
-                <Link to="/">
-                    <button className="link_button">Voltar</button>
-                </Link>
+                <div className="container">
+                    <h1>{movie.title}</h1>
+                    <h3>Data de lançamento: {movie.release_date}</h3>
+                        <h4>Descrição: </h4>
+                        <p className="movie-desc">{movie.overview}</p>
+                        <Link to="/">
+                            <button className="link_button">Voltar</button>
+                        </Link>
+                </div>
             </div>
         </div>
     );
