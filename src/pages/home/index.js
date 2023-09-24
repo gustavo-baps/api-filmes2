@@ -29,9 +29,6 @@ function Home() {
     <>
         <GlobalStyle/>
         <Container>
-            <div className="background-image">
-                <img src="https://i.ibb.co/5cL7Nkg/white-canvas-texture-high-quality-texture-macro-463999-716.png"></img>
-            </div>
             <Header>
                 <Nav>
                     <ul>
@@ -74,9 +71,8 @@ function Home() {
                                 src={`${imagePath}${movie.poster_path}`}
                                 alt="{movie.title}"
                             />
-                            <span>{movie.title}</span>
                             <Link to={`/${movie.id}`}>
-                                <Btn>Detalhes</Btn>
+                                <Btn>Ver mais</Btn>
                             </Link>
                         </Movie>
                     ))}
@@ -89,9 +85,9 @@ function Home() {
                                 src={`${imagePath}${movie.poster_path}`}
                                 alt="{movie.title}"
                             />
-                            <span>{movie.title}</span>
+                            
                             <Link to={`/${movie.id}`}>
-                                <Btn>Detalhes</Btn>
+                                <Btn>Ver mais</Btn>
                             </Link>
                         </Movie>
                     ))}

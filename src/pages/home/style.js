@@ -18,23 +18,18 @@ export const GlobalStyle = createGlobalStyle`
         width: 50%;
         margin-top: 3.5vw;
     }
-    .background-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        opacity: 0.1; 
-    }
 `;
 
 
 export const CustomCarousel = styled(Slider)`
   width: 95%;
   margin: 0 auto;
-  margin-bottom: 4vw;
   z-index: 5;
+  background-color: #080C17;
+  padding: 1vw;
+  border-radius: 0.5vw;
+  box-shadow: 0 5px 20px rgba(0,0,0,.55);
+  margin-bottom: 2vw;
 `;
 
 export const Header = styled.header`
@@ -91,6 +86,7 @@ export const Header = styled.header`
         background-color: #FFC72C;
         box-shadow: 0 5px 12px rgba(0,0,0,.55);
         z-index: 5;
+        cursor: pointer;
     }
     #botao1 a {
         color: black;
@@ -107,12 +103,14 @@ export const Header = styled.header`
         margin-left: 1vw;
         box-shadow: 0 5px 12px rgba(0,0,0,.55);
         z-index: 5;
+        cursor: pointer;
     }
     #botao2 a {
         color: black;
         font-weight: 600;
         margin-top: 1vw;
         margin-left: 0.5vw;
+        z-index: 5;
     }
     a {
         text-decoration: none;
@@ -154,8 +152,9 @@ export const Movie = styled.li`
     align-items: center;
     text-align: center;
     margin-left: 5vw;
+    margin-top: 1.5vw;
     margin-right: -2vw;
-    margin-bottom: 1vw;
+    margin-bottom: 1.5vw;
     justify-content: space-evenly;
     box-shadow: 0 5px 5px rgba(0,0,0,.55);
     img {
