@@ -3,21 +3,50 @@ import { Container, Movie, MovieList, Btn, Header, GlobalStyle, Nav, CustomCarou
 import { Link } from "react-router-dom";
 
 
-function Home() {
+function Home() {   
     const imagePath = "https://image.tmdb.org/t/p/w500";
 
-    const [movies, setMovies] = useState([]);
+    const [popularMovies, setPopularMovies] = useState([]);
+    const [topRatedMovies, setTopRatedMovies] = useState([]);
     const KEY = process.env.REACT_APP_KEY;
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=pt-BR`)
             .then((response) => response.json())
             .then((data) => {
-                setMovies(data.results);
+                setPopularMovies(data.results);
             });
     }, [KEY]);
-    const metade = Math.ceil(movies.length / 2);
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${KEY}&language=pt-BR`)
+            .then((response) => response.json())
+            .then((data) => {
+                setTopRatedMovies(data.results);
+            });
+    }, [KEY]);
+   
+    const [termo, setTermo] = useState("");
+    const [resultado, setResultado] = useState([]);
+
+    const handleSearch =(event)=>{
+        const termo = event.target.value;
+        setTermo(termo);
+
+        if (termo === ""){
+            setResultado([]);   
+        } 
+        else{
+            const allMovies = [...popularMovies, ...topRatedMovies]
+            const filmesPesquisados = allMovies.filter((movie) =>
+              movie.title.toLowerCase().includes(termo.toLowerCase())
+            );
+            setResultado(filmesPesquisados);
+        }
+    };
+    
+
+    /*const metade = Math.ceil(movies.length / 2);
     const primeiraMetade = movies.slice(0, metade);
-    const segundaMetade = movies.slice(metade);
+    const segundaMetade = movies.slice(metade);*/
 
     const carouselSettings = {
         infinite: true,
@@ -62,10 +91,10 @@ function Home() {
                 <div id="emAltaImg">
                     <img src="https://i.ibb.co/WpNFhRt/mercado-em-alta.png"></img>
                 </div>
-                <h1>Em Alta</h1>
+                <h1>Populares</h1>
             </div>
                 <CustomCarousel {...carouselSettings}>
-                    {primeiraMetade.map((movie) => (
+                    {popularMovies.map((movie) => (
                         <Movie key={movie.id}>
                             <img
                                 src={`${imagePath}${movie.poster_path}`}
@@ -77,9 +106,9 @@ function Home() {
                         </Movie>
                     ))}
                 </CustomCarousel>
-                <h1>Novidades</h1> 
+                <h1>Os Melhores</h1> 
                 <CustomCarousel {...carouselSettings}>
-                    {segundaMetade.map((movie) => (
+                    {topRatedMovies.map((movie) => (
                         <Movie key={movie.id}>
                             <img
                                 src={`${imagePath}${movie.poster_path}`}
@@ -92,6 +121,34 @@ function Home() {
                         </Movie>
                     ))}
                 </CustomCarousel>
+                <h2 id="h2Pesquisa">Pesquisar</h2>
+                <input id="inputPesquisa"
+                    type="text"
+                    placeholder="Pesquisar filmes"
+                    value={termo}
+                    onChange={handleSearch}
+                />
+                <div>
+                {resultado.length > 0 && (
+                    <div id="resultsPai">
+                        <h1>Resultados da Pesquisa</h1>
+                        <div id="resultados">
+                        {resultado.map((movie) => (
+                                <Movie key={movie.id}>
+                                    <img
+                                        src={`${imagePath}${movie.poster_path}`}
+                                        alt="{movie.title}"
+                                    />
+                            
+                                    <Link to={`/${movie.id}`}>
+                                        <Btn>Ver mais</Btn>
+                                    </Link>
+                                </Movie>
+                        ))}
+                        </div>
+                    </div>
+                )}
+                </div>
         </Container>
     </>
     );

@@ -18,6 +18,28 @@ export const GlobalStyle = createGlobalStyle`
         width: 50%;
         margin-top: 3.5vw;
     }
+    #resultados {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        width: 95vw;
+    }
+    #resultsPai h1{
+        margin-left: 2vw;
+    }
+    #inputPesquisa {
+        width: 30vw;
+        height: 3vw;
+        margin-left: 35vw;
+        margin-bottom: 5vw;
+        border-radius: 10px;
+        font-weight: 700;
+        margin-top: 2vw;
+    }
+    #h2Pesquisa {
+        margin-left: 45vw;
+        margin-top: 5vw;
+    }
 `;
 
 
@@ -151,9 +173,8 @@ export const Movie = styled.li`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-left: 5vw;
+    margin-left: 3.5vw;
     margin-top: 1.5vw;
-    margin-right: -2vw;
     margin-bottom: 1.5vw;
     justify-content: space-evenly;
     box-shadow: 0 5px 5px rgba(0,0,0,.55);
