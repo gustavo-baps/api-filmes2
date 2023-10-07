@@ -4,6 +4,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export const GlobalStyle = createGlobalStyle`
+    * {
+        text-decoration: none;
+        scroll-behavior: smooth;
+    }
     body{
         margin: 0;
         padding:0;
@@ -26,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     #resultsPai h1{
         margin-left: 2vw;
+        margin-top: -2vw;
     }
     #inputPesquisa {
         width: 30vw;

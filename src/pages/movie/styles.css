@@ -36,6 +36,11 @@ nav li {
   margin-top: 1.5vw;
   z-index: 5;
 }
+nav a{
+  z-index: 5;
+  text-decoration: none;
+  color: white;
+}
 nav ul {
   list-style: none;
   display: flex;

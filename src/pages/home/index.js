@@ -64,8 +64,10 @@ function Home() {
                     <div id="logo">
                         <img src="https://i.ibb.co/G7dmjpf/imagem-2023-09-20-155122815-removebg-preview.png"></img>
                     </div>
+                    <Link to = {'/'}>
                         <li>Home</li>
-                        <li>Filmes</li>
+                    </Link>
+                        <li><a href="#aaa">Filmes</a></li>
                         <li>Sobre</li>
                     </ul>
                     <div></div>
@@ -87,6 +89,34 @@ function Home() {
                     </Link>
                 </div>
             </Header>
+            <h2 id="h2Pesquisa">Pesquisar</h2>
+                <input id="inputPesquisa"
+                    type="text"
+                    placeholder="Pesquisar filmes"
+                    value={termo}
+                    onChange={handleSearch}
+                />
+                <div>
+                {resultado.length > 0 && (
+                    <div id="resultsPai">
+                        <h1>Resultados da Pesquisa</h1>
+                        <div id="resultados">
+                        {resultado.map((movie) => (
+                                <Movie key={movie.id}>
+                                    <img
+                                        src={`${imagePath}${movie.poster_path}`}
+                                        alt="{movie.title}"
+                                    />
+                            
+                                    <Link to={`/${movie.id}`}>
+                                        <Btn>Ver mais</Btn>
+                                    </Link>
+                                </Movie>
+                        ))}
+                        </div>
+                    </div>
+                )}
+                </div>
             <div id="aaa">
                 <div id="emAltaImg">
                     <img src="https://i.ibb.co/WpNFhRt/mercado-em-alta.png"></img>
@@ -121,34 +151,7 @@ function Home() {
                         </Movie>
                     ))}
                 </CustomCarousel>
-                <h2 id="h2Pesquisa">Pesquisar</h2>
-                <input id="inputPesquisa"
-                    type="text"
-                    placeholder="Pesquisar filmes"
-                    value={termo}
-                    onChange={handleSearch}
-                />
-                <div>
-                {resultado.length > 0 && (
-                    <div id="resultsPai">
-                        <h1>Resultados da Pesquisa</h1>
-                        <div id="resultados">
-                        {resultado.map((movie) => (
-                                <Movie key={movie.id}>
-                                    <img
-                                        src={`${imagePath}${movie.poster_path}`}
-                                        alt="{movie.title}"
-                                    />
-                            
-                                    <Link to={`/${movie.id}`}>
-                                        <Btn>Ver mais</Btn>
-                                    </Link>
-                                </Movie>
-                        ))}
-                        </div>
-                    </div>
-                )}
-                </div>
+                
         </Container>
     </>
     );

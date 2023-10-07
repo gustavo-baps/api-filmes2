@@ -31,8 +31,9 @@ const Movie = () => {
                     <div id="logo">
                         <img src="https://i.ibb.co/G7dmjpf/imagem-2023-09-20-155122815-removebg-preview.png"></img>
                     </div>
+                    <Link to = {'/'}>
                         <li>Home</li>
-                        <li>Filmes</li>
+                    </Link>
                         <li>Sobre</li>
                 </ul>
                 <div></div>
