@@ -33,6 +33,7 @@ export const GlobalStyle = createGlobalStyle`
         margin-top: -2vw;
     }
     #inputPesquisa {
+        padding: 1vw;
         width: 30vw;
         height: 3vw;
         margin-left: 35vw;
@@ -204,9 +205,9 @@ export const Movie = styled.li`
 
 export const Btn = styled.button`
     padding: 0.5rem;
-    border-radius: 180px;
+    border-radius: 15px;
     width: 12vw;
-    height: 2.5vw;
+    height: 3vw;
     background-color: #FFC72C;
     margin-top: 1vw;
     box-shadow: 0 5px 12px rgba(0,0,0,.55);
