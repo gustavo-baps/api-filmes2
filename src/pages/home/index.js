@@ -42,7 +42,7 @@ function Home() {
     }, [KEY]);
     
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}`)
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&language=pt-BR`)
           .then((response) => response.json())
           .then((data) => {
             setAllMovies(data.results);
@@ -60,13 +60,25 @@ function Home() {
         } else {
             const allMoviesCombined = [
                 ...allMovies,
-                ...topRatedMovies,
+                ...popularMovies,
                 ...genreMovies,
+                ...topRatedMovies
             ];
     
-            const filmesPesquisados = allMoviesCombined.filter((movie) =>
-                movie.title.toLowerCase().includes(termo.toLowerCase())
-            );
+            const uniqueMovieIds = new Set();
+
+            const filmesPesquisados = allMoviesCombined.filter((movie) => {
+                const lowercaseTitle = movie.title.toLowerCase();
+                const isMatching = lowercaseTitle.includes(termo.toLowerCase());
+
+            
+                if (isMatching && !uniqueMovieIds.has(movie.id)) {
+                    uniqueMovieIds.add(movie.id);
+                    return true;
+                }
+
+            return false;
+            });
             setResultado(filmesPesquisados);
         }
     };
