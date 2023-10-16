@@ -46,6 +46,17 @@ export const GlobalStyle = createGlobalStyle`
         margin-left: 45vw;
         margin-top: 5vw;
     }
+    #divGeneros{
+        display: flex;
+        padding: 1vw;
+        background-color: #04040A;
+        color: white;
+        box-shadow: 0 5px 20px rgba(0,0,0,.55);
+    }
+    #divGeneros ul {
+        margin-left: 8.3vw;
+        font-weight: 600;   
+    }
 `;
 
 

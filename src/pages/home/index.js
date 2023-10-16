@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ListaGenero from "../generosShow/generos";
 import { Container, Movie, MovieList, Btn, Header, GlobalStyle, Nav, CustomCarousel } from "./style";
 import { Link } from "react-router-dom";
 
@@ -8,6 +9,22 @@ function Home() {
 
     const [popularMovies, setPopularMovies] = useState([]);
     const [topRatedMovies, setTopRatedMovies] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState(null);
+    const [genreMovies, setGenreMovies] = useState([]);
+    const [allMovies, setAllMovies] = useState([]);
+
+    const generoClick = (generoId, generoName) => {
+        setSelectedGenre({ id: generoId, name: generoName });
+        fetchMoviesByGenre(generoId);
+    };
+    const fetchMoviesByGenre = (generoId) => {
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${generoId}&language=pt-BR`)
+          .then((response) => response.json())
+          .then((data) => {
+            setGenreMovies(data.results);
+          });
+      };
+
     const KEY = process.env.REACT_APP_KEY;
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=pt-BR`)
@@ -23,25 +40,37 @@ function Home() {
                 setTopRatedMovies(data.results);
             });
     }, [KEY]);
-   
+    
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setAllMovies(data.results);
+          });
+      }, [KEY]);
     const [termo, setTermo] = useState("");
     const [resultado, setResultado] = useState([]);
 
-    const handleSearch =(event)=>{
+    const handleSearch = (event) => {
         const termo = event.target.value;
         setTermo(termo);
-
-        if (termo === ""){
-            setResultado([]);   
-        } 
-        else{
-            const allMovies = [...popularMovies, ...topRatedMovies]
-            const filmesPesquisados = allMovies.filter((movie) =>
-              movie.title.toLowerCase().includes(termo.toLowerCase())
+    
+        if (termo === "") {
+            setResultado([]);
+        } else {
+            const allMoviesCombined = [
+                ...allMovies,
+                ...topRatedMovies,
+                ...genreMovies,
+            ];
+    
+            const filmesPesquisados = allMoviesCombined.filter((movie) =>
+                movie.title.toLowerCase().includes(termo.toLowerCase())
             );
             setResultado(filmesPesquisados);
         }
     };
+    
     
 
     /*const metade = Math.ceil(movies.length / 2);
@@ -89,6 +118,22 @@ function Home() {
                     </Link>
                 </div>
             </Header>
+            <ListaGenero generoClick={generoClick}/>
+            {selectedGenre && (
+                <>
+                <h1>{selectedGenre.name}</h1>
+                <CustomCarousel {...carouselSettings}>
+                    {genreMovies.map((movie) => (
+                    <Movie key={movie.id}>
+                        <img src={`${imagePath}${movie.poster_path}`} alt="{movie.title}" />
+                        <Link to={`/${movie.id}`}>
+                        <Btn>Ver mais</Btn>
+                        </Link>
+                    </Movie>
+                    ))}
+                </CustomCarousel>
+                </>
+            )}
             <h2 id="h2Pesquisa">Pesquisar</h2>
                 <input id="inputPesquisa"
                     type="text"
