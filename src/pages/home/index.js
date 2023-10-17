@@ -51,13 +51,14 @@ function Home() {
     const [termo, setTermo] = useState("");
     const [resultado, setResultado] = useState([]);
 
-    const handleSearch = (event) => {
+    const pesquisa = (event) => {
         const termo = event.target.value;
         setTermo(termo);
     
-        if (termo === "") {
+        if(termo === ""){
             setResultado([]);
-        } else {
+        } 
+        else{
             const allMoviesCombined = [
                 ...allMovies,
                 ...popularMovies,
@@ -65,15 +66,15 @@ function Home() {
                 ...topRatedMovies
             ];
     
-            const uniqueMovieIds = new Set();
+            const idsUnicos = new Set();
 
             const filmesPesquisados = allMoviesCombined.filter((movie) => {
                 const lowercaseTitle = movie.title.toLowerCase();
                 const isMatching = lowercaseTitle.includes(termo.toLowerCase());
 
             
-                if (isMatching && !uniqueMovieIds.has(movie.id)) {
-                    uniqueMovieIds.add(movie.id);
+                if (isMatching && !idsUnicos.has(movie.id)) {
+                    idsUnicos.add(movie.id);
                     return true;
                 }
 
@@ -151,7 +152,7 @@ function Home() {
                     type="text"
                     placeholder="Pesquisar filmes"
                     value={termo}
-                    onChange={handleSearch}
+                    onChange={pesquisa}
                 />
                 <div>
                 {resultado.length > 0 && (
